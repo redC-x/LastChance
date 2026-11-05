@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Último Turno 3.0</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main id="game">
+    <header class="hud">
+        <div class="health">
+            <span>VIDA</span>
+            <div class="health-bar"><div id="healthFill"></div></div>
+        </div>
+        <div class="stats">
+            <span>AMENAZA <b id="wave">1</b></span>
+            <span>BAJAS <b id="kills">0</b></span>
+        </div>
+        <div class="ammo">
+            <b id="ammo">12</b><small id="reserve">/ 48</small>
+            <div id="weaponName">PISTOLA</div>
+        </div>
+    </header>
+
+    <div class="level-progress">
+        <div class="progress-info">
+            <span id="levelLabel">SIGUIENTE AMENAZA</span>
+            <span id="progressText">0 / 10</span>
+        </div>
+        <div class="progress-track"><div id="progressFill"></div></div>
+    </div>
+
+    <canvas id="gameCanvas"></canvas>
+    <button id="pauseBtn">Ⅱ</button>
+
+    <div class="controls">
+        <div id="joystick" class="joystick"><div id="stick"></div></div>
+        <div class="action-buttons">
+            <button id="reloadBtn">RECARGAR</button>
+            <button id="fireBtn">DISPARAR</button>
+        </div>
+    </div>
+
+    <section id="menu" class="screen">
+        <h1>ÚLTIMO<br>TURNO</h1>
+        <p>LA NOCHE NO TERMINA</p>
+        <div class="menu-info">SOBREVIVE TODO LO QUE PUEDAS<br>CADA 10 BAJAS AUMENTA LA AMENAZA<br>CADA 5 AMENAZAS APARECE UN JEFE</div>
+        <button id="startBtn">COMENZAR</button>
+        <small>Récord: <b id="best">0</b> bajas</small>
+    </section>
+
+    <section id="pauseScreen" class="screen hidden">
+        <h2>PAUSA</h2>
+        <button id="resumeBtn">CONTINUAR</button>
+        <button id="restartBtn">REINICIAR</button>
+    </section>
+
+    <section id="chestScreen" class="screen hidden">
+        <div class="chest-icon">▣</div>
+        <h2>¡ARSENAL ENCONTRADO!</h2>
+        <p id="chestDescription">Elige si quieres cambiar tu arma.</p>
+        <div class="weapon-card">
+            <h3 id="newWeaponName">ESCOPETA</h3>
+            <p id="newWeaponStats">Daño: 20 · Cargador: 6</p>
+            <p id="newWeaponDescription">Disparo de varios perdigones.</p>
+        </div>
+        <button id="takeWeaponBtn">CAMBIAR DE ARMA</button>
+        <button id="keepWeaponBtn" class="secondary">CONSERVAR MI ARMA</button>
+    </section>
+
+    <section id="gameOver" class="screen hidden">
+        <h2>HAS CAÍDO</h2>
+        <p>La instalación ha sido tomada.</p>
+        <p>Amenaza alcanzada: <b id="finalWave">1</b></p>
+        <p>Bajas: <b id="finalKills">0</b></p>
+        <button id="againBtn">VOLVER A INTENTAR</button>
+    </section>
+
+    <div id="message"></div>
+</main>
+<script src="game.js"></script>
+</body>
+</html>
