@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#080d0c">
+  <title>Último Turno 5.1</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main id="game">
+  <header class="hud">
+    <div class="health"><span>VIDA</span><div class="health-bar"><div id="healthFill"></div></div></div>
+    <div class="stats"><span>AMENAZA <b id="wave">1</b></span><span>BAJAS <b id="kills">0</b></span></div>
+    <div class="ammo"><b id="ammo">12</b><small id="reserve">/ 48</small><div id="weaponName">PISTOLA</div></div>
+  </header>
+  <div class="level-progress"><div class="progress-info"><span id="levelLabel">SIGUIENTE AMENAZA</span><span id="progressText">0 / 10</span></div><div class="progress-track"><div id="progressFill"></div></div></div>
+  <div id="scenarioLabel">INSTALACIÓN ABANDONADA</div>
+  <canvas id="gameCanvas"></canvas>
+  <button id="pauseBtn" aria-label="Pausar">Ⅱ</button>
+  <div class="controls">
+    <div id="joystick" class="joystick"><div id="stick"></div></div>
+    <div class="action-buttons">
+      <button id="inventoryBtn">☰ INVENTARIO</button>
+      <div class="power-row"><button id="activeBtn1" class="active-power" disabled>1</button><button id="activeBtn2" class="active-power" disabled>2</button></div>
+      <div id="powerStatus">SIN PODERES ACTIVOS</div>
+      <button id="fireBtn">DISPARAR</button>
+    </div>
+  </div>
+  <section id="menu" class="screen">
+    <h1>ÚLTIMO<br>TURNO</h1><p>LA NOCHE NO TERMINA</p>
+    <div class="menu-info">SOBREVIVE TODO LO QUE PUEDAS<br>CADA 10 BAJAS AUMENTA LA AMENAZA<br>CADA 5 AMENAZAS APARECE UN JEFE<br>LOS ESCENARIOS CAMBIAN CADA 4 AMENAZAS</div>
+    <div class="menu-money">DINERO: <b id="shopMoney">$0</b></div>
+    <button id="openShopBtn" class="secondary">TIENDA DE PERSONAJES</button>
+    <button id="startBtn">COMENZAR</button>
+    <small>Récord: <b id="best">0</b> bajas</small>
+    <small class="desktop-hint">PC: WASD para moverte · Mouse para apuntar y disparar · R para recargar · I para inventario · ESC para pausar</small>
+  </section>
+  <section id="shopScreen" class="screen hidden">
+    <h2>PERSONAJES</h2><p>Desbloquea especialistas con el dinero que ganes sobreviviendo.</p>
+    <div class="shop-balance">DINERO DISPONIBLE: <b id="shopMoneyShop">$0</b></div>
+    <div id="characterShopList" class="inventory-list shop-list"></div>
+    <button id="closeShopBtn" class="secondary">VOLVER</button>
+  </section>
+  <section id="pauseScreen" class="screen hidden"><h2>PAUSA</h2><button id="openInventoryPause">INVENTARIO</button><button id="resumeBtn">CONTINUAR</button><button id="restartBtn">REINICIAR</button></section>
+  <section id="inventoryScreen" class="screen hidden"><h2>INVENTARIO</h2><div class="inventory-tabs"><button id="passiveTab" class="tab selected">PASIVOS</button><button id="activeTab" class="tab">ACTIVOS</button></div><div id="inventorySummary"></div><div id="inventoryList" class="inventory-list"></div><button id="closeInventory" class="secondary">VOLVER</button></section>
+  <section id="powerChoiceScreen" class="screen hidden"><div class="chest-icon">⚡</div><h2>SUMINISTROS ESPECIALES</h2><p>Elige una mejora. ¡Piensa bien tu estrategia!</p><div id="powerChoices" class="power-choices"></div></section>
+  <section id="chestScreen" class="screen hidden"><div class="chest-icon">▣</div><h2>¡ARSENAL ENCONTRADO!</h2><p id="chestDescription">Elige si quieres cambiar tu arma.</p><div class="weapon-card"><h3 id="newWeaponName">ESCOPETA</h3><p id="newWeaponStats">Daño: 20 · Cargador: 6</p><p id="newWeaponDescription">Disparo especial.</p></div><button id="takeWeaponBtn">CAMBIAR DE ARMA</button><button id="keepWeaponBtn" class="secondary">CONSERVAR MI ARMA</button></section>
+  <section id="gameOver" class="screen hidden">
+  <h2>HAS CAÍDO</h2>
+
+  <p>La instalación ha sido tomada.</p>
+
+  <p>Amenaza alcanzada: <b id="finalWave">1</b></p>
+  <p>Bajas: <b id="finalKills">0</b></p>
+
+  <button id="againBtn">VOLVER A INTENTAR</button>
+
+  <button id="mainMenuBtn" class="secondary">
+    MENÚ PRINCIPAL
+  </button>
+  </section>
+  <div id="message"></div>
+</main>
+<script src="game.js"></script>
+</body>
+</html>
